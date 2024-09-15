@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "my_krml_25076922"
+version = "0.1.0"
+description = "My adv ml pkg"
+authors = ["Drishya Chuke"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "2.2.2"
+scikit-learn = "1.5.1"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.2.2"
+jupyterlab = "4.2.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
