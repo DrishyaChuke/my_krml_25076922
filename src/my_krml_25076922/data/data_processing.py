@@ -1,3 +1,5 @@
+import pandas as pd
+
 def reshape_sales_data(df, id_vars):
     """
     Reshape sales data from wide format to long format using pd.melt().
