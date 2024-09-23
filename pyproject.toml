@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "my_krml_25076922"
-version = "2024.0.1.5"
+version = "2024.0.1.6"
 description = "My adv ml pkg"
 authors = ["Drishya Chuke"]
 license = "MIT"
