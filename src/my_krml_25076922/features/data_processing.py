@@ -1,5 +1,8 @@
 import pandas as pd
 
+from sklearn.preprocessing import StandardScaler
+
+
 def reshape_sales_data(df, id_vars):
     """
     Reshape sales data from wide format to long format using pd.melt().
@@ -89,5 +92,64 @@ def impute_missing_prices(sales_data):
     
     # Median imputation for any remaining missing prices
     sales_data['sell_price'] = sales_data.groupby('item_id')['sell_price'].transform(lambda x: x.fillna(x.median()))
+    
+    return sales_data
+
+# Add this in my_krml_25076922/features/data_preprocessing.py
+
+from sklearn.preprocessing import LabelEncoder
+
+def encode_categorical_columns(sales_data, categorical_columns):
+    """
+    Apply label encoding to categorical columns in the sales data.
+    
+    Parameters:
+    sales_data (pd.DataFrame): Sales data containing categorical features.
+    categorical_columns (list): List of categorical columns to encode.
+    
+    Returns:
+    pd.DataFrame: Sales data with encoded categorical features.
+    """
+    le = LabelEncoder()
+    for col in categorical_columns:
+        sales_data[col] = le.fit_transform(sales_data[col].astype(str))
+    
+    return sales_data
+
+from sklearn.model_selection import train_test_split
+
+def split_data(sales_data, target_column, test_size=0.2, random_state=42):
+    """
+    Split the sales data into training and validation sets.
+    
+    Parameters:
+    sales_data (pd.DataFrame): Sales data containing features and target column.
+    target_column (str): The column name of the target variable (sales).
+    test_size (float): The proportion of the dataset to include in the validation set.
+    random_state (int): Random state for reproducibility.
+    
+    Returns:
+    pd.DataFrame, pd.DataFrame, pd.Series, pd.Series: Training features, validation features, training target, validation target.
+    """
+    X = sales_data.drop(columns=[target_column])
+    y = sales_data[target_column]
+    
+    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=test_size, random_state=random_state)
+    
+    return X_train, X_val, y_train, y_val
+
+def scale_numerical_columns(sales_data, numerical_columns):
+    """
+    Apply standard scaling to numerical columns in the sales data.
+    
+    Parameters:
+    sales_data (pd.DataFrame): Sales data containing numerical features.
+    numerical_columns (list): List of numerical columns to scale.
+    
+    Returns:
+    pd.DataFrame: Sales data with scaled numerical features.
+    """
+    scaler = StandardScaler()
+    sales_data[numerical_columns] = scaler.fit_transform(sales_data[numerical_columns])
     
     return sales_data
