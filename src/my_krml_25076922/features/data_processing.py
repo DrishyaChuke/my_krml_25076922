@@ -46,14 +46,7 @@ def merge_with_item_prices(sales_data, item_prices):
     Returns:
     pd.DataFrame: Sales data merged with item prices.
     """
-    # Ensure the 'date' column is in datetime format
-    sales_data['date'] = pd.to_datetime(sales_data['date'])
     
-    # Correctly calculate wm_yr_wk for merging
-    sales_data['wm_yr_wk'] = sales_data['date'].dt.year.astype(str) + sales_data['date'].dt.isocalendar().week.astype(str).str.zfill(2)
-    sales_data['wm_yr_wk'] = sales_data['wm_yr_wk'].astype(int)
-
-    # Merge with item prices
     merged_df = sales_data.merge(item_prices, on=['store_id', 'item_id', 'wm_yr_wk'], how='left')
     
     return merged_df
