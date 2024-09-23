@@ -2,6 +2,7 @@ import pandas as pd
 
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
 
 
 def reshape_sales_data(df, id_vars):
@@ -96,10 +97,6 @@ def impute_missing_prices(sales_data):
     
     return sales_data
 
-# Add this in my_krml_25076922/features/data_preprocessing.py
-
-from sklearn.preprocessing import LabelEncoder
-
 def encode_categorical_columns(sales_data, categorical_columns):
     """
     Apply label encoding to categorical columns in the sales data.
@@ -116,8 +113,6 @@ def encode_categorical_columns(sales_data, categorical_columns):
         sales_data[col] = le.fit_transform(sales_data[col].astype(str))
     
     return sales_data
-
-from sklearn.model_selection import train_test_split
 
 def split_data(sales_data, target_column, test_size=0.2, random_state=42):
     """
