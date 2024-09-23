@@ -31,23 +31,23 @@ def merge_with_calendar(sales_data, calendar_data):
     pd.DataFrame: Sales data with actual dates from the calendar.
     """
     # Merge sales data with calendar to get actual dates
-    merged_df = sales_data.merge(calendar_data[['d', 'date']], on='d', how='left')
+    merged_df = sales_data.merge(calendar_data[['d', 'date', 'wm_yr_wk']], on='d', how='left')
     
     return merged_df
 
 def merge_with_item_prices(sales_data, item_prices):
     """
-    Merge sales data with item price data based on store_id, item_id, and wm_yr_wk.
+    Merge sales data with item price data based on store_id, item_id.
     
     Parameters:
     sales_data (pd.DataFrame): Sales data with date features (and calculated week of the year).
-    item_prices (pd.DataFrame): Item price data containing store_id, item_id, and wm_yr_wk.
+    item_prices (pd.DataFrame): Item price data containing store_id, item_id.
     
     Returns:
     pd.DataFrame: Sales data merged with item prices.
     """
     
-    merged_df = sales_data.merge(item_prices, on=['store_id', 'item_id', 'wm_yr_wk'], how='left')
+    merged_df = sales_data.merge(item_prices, on=['store_id', 'item_id'], how='left')
     
     return merged_df
 
