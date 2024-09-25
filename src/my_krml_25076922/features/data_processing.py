@@ -59,9 +59,6 @@ def merge_with_item_prices(sales_data, item_prices):
     # Merge sales data with item prices
     merged_df = sales_data.merge(item_prices, on=['store_id', 'item_id', 'wm_yr_wk'], how='left')
     
-    # Replace missing sell_price values with 0
-    merged_df['sell_price'].fillna(0, inplace=True)
-    
     return merged_df
 
 def merge_with_events(sales_data, events_data):
