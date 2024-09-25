@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "my_krml_25076922"
-version = "2024.0.2.8"
+version = "2024.0.2.9"
 description = "My adv ml pkg"
 authors = ["Drishya Chuke"]
 license = "MIT"
@@ -10,6 +10,7 @@ readme = "README.md"
 python = "^3.9"
 pandas = "2.2.2"
 scikit-learn = "1.5.1"
+tqdm = "^4.66.5"
 
 [tool.poetry.dev-dependencies]
 
