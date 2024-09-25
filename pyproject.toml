@@ -1,4 +1,4 @@
-git [tool.poetry]
+[tool.poetry]
 name = "my_krml_25076922"
 version = "2024.0.3.0.2"
 description = "My adv ml pkg"
