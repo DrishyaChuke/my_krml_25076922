@@ -81,27 +81,6 @@ def merge_with_events(sales_data, events_data):
     
     return merged_df
 
-def impute_missing_prices(sales_data):
-    """
-    Impute missing sell_price values using forward fill, backward fill, and median imputation.
-    
-    Parameters:
-    sales_data (pd.DataFrame): Sales data with missing sell_price values.
-    
-    Returns:
-    pd.DataFrame: Sales data with missing prices imputed.
-    """
-    # Forward fill missing prices based on item_id
-    sales_data['sell_price'] = sales_data.groupby('item_id')['sell_price'].fillna(method='ffill')
-    
-    # Backward fill any remaining missing prices
-    sales_data['sell_price'] = sales_data.groupby('item_id')['sell_price'].fillna(method='bfill')
-    
-    # Median imputation for any remaining missing prices
-    sales_data['sell_price'] = sales_data.groupby('item_id')['sell_price'].transform(lambda x: x.fillna(x.median()))
-    
-    return sales_data
-
 def encode_categorical_columns(sales_data, categorical_columns):
     """
     Apply label encoding to categorical columns in the sales data.
