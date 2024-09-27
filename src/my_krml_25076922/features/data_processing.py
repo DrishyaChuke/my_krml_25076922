@@ -118,19 +118,21 @@ def split_data(sales_data, target_column, test_size=0.2, random_state=42):
     
     return X_train, X_val, y_train, y_val
 
-def scale_numerical_columns(sales_data, numerical_columns):
+def scale_features(sales_data, features_to_scale):
     """
-    Apply standard scaling to numerical columns in the sales data.
+    Apply standard scaling to selected numerical features.
     
     Parameters:
-    sales_data (pd.DataFrame): Sales data containing numerical features.
-    numerical_columns (list): List of numerical columns to scale.
+    df (pd.DataFrame): The DataFrame containing features.
+    features_to_scale (list): List of feature names to scale.
     
     Returns:
-    pd.DataFrame: Sales data with scaled numerical features.
+    pd.DataFrame: The DataFrame with scaled features.
     """
     scaler = StandardScaler()
-    sales_data[numerical_columns] = scaler.fit_transform(sales_data[numerical_columns])
+    
+    # Scale the selected features
+    sales_data[features_to_scale] = scaler.fit_transform(sales_data[features_to_scale])
     
     return sales_data
 
